@@ -5,24 +5,24 @@ export const StyledForm = ({ submitForm }) => {
   const { register, handleSubmit } = useFormContext();
 
   return (
-    <section className="flex flex-col w-full max-w-md mx-auto bg-white p-6 rounded-lg shadow-lg">
+    <section className="flex flex-col w-full max-w-md mx-auto bg-white p-6 rounded-lg shadow-lg bg-purple-900">
       <form
         onSubmit={handleSubmit(submitForm)}
-        className="flex flex-col gap-4"
+        className="flex flex-col gap-4 font-serif"
       >
         <label className="flex flex-col gap-1">
-          <span className="text-sm font-medium text-gray-700">Title</span>
+          <span className="  text-white font-serif">Title</span>
           <input
             {...register("title")}
             placeholder="Add title"
             type="text"
-            className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 font-black-200"
           />
           <InputErrors name="title" />
         </label>
 
         <label className="flex flex-col gap-1">
-          <span className="text-sm font-medium text-gray-700">Body</span>
+          <span className="font-medium ">Body</span>
           <textarea
             {...register("body")}
             placeholder="Write your post here..."
@@ -32,7 +32,7 @@ export const StyledForm = ({ submitForm }) => {
         </label>
 
         <label className="flex flex-col gap-1">
-          <span className="text-sm font-medium text-gray-700">User</span>
+          <span className="font-medium ">User</span>
           <input
             {...register("user")}
             placeholder="Your Name"
@@ -44,9 +44,9 @@ export const StyledForm = ({ submitForm }) => {
 
         <button
           type="submit"
-          className="mt-4 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-200"
+          className="mt-4 bg-blue-900 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-200 font-mono"
         >
-          Wyslij
+          SEND
         </button>
       </form>
     </section>

@@ -2,7 +2,7 @@ export const Post = ({ post }) => {
   return (
     <div
       key={post.id}
-      className="bg-white shadow-lg rounded-lg p-6 mb-4 border border-gray-200"
+      className="bg-blue-100 shadow-lg rounded-lg p-6 mb-4 border border-gray-200 hover:bg-blue-300"
     >
       <h2 className="text-xl font-bold text-gray-800 mb-2 hover:text-blue-500 transition duration-200">
         {post.title}

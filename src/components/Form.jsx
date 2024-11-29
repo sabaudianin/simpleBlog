@@ -1,15 +1,14 @@
-import { useEffect } from "react";
-
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { createPost } from "../api/postsMethods";
 import { useForm, FormProvider } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMethodContext, useStateContext } from "../hooks/useGlobalProvider";
 
 import { StyledForm } from "./StyledForm";
 
 const schema = z
   .object({
-    title: z.string().min(5, "Minimum 5 znaków").max(12, "Maximum 12 znaków"),
+    title: z.string().min(5, "Minimum 5 znaków").max(24, "Maximum 24 znaków"),
     body: z
       .string()
       .min(1, "Pole nie może być puste")
@@ -24,18 +23,19 @@ const schema = z
 export const Form = () => {
   const methods = useForm({ resolver: zodResolver(schema) });
 
-  const { addPost } = useMethodContext();
-  const { postsState } = useStateContext();
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation({
+    mutationFn: createPost,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["posts"] });
+    },
+  });
 
   const submitForm = (data) => {
-    addPost(data);
+    mutation.mutate(data);
     methods.reset();
-    console.log(data, postsState);
   };
-
-  useEffect(() => {
-    console.log("Updated postsState:", postsState); // Loguj nowy stan po każdej aktualizacji
-  }, [postsState]); // W
 
   return (
     <FormProvider {...methods}>

@@ -8,6 +8,7 @@ export const PostList = () => {
     queryKey: ["posts"],
     queryFn: fetchPost,
   });
+
   const memoizedPosts = useMemo(() => <PostListItems posts={data} />, [data]);
 
   if (isPending) return <p>...LOADING...</p>;
