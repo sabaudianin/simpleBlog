@@ -22,24 +22,35 @@ const schema = z
 
 export const Form = () => {
   const methods = useForm({ resolver: zodResolver(schema) });
-
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
     mutationFn: createPost,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["posts"] });
+      methods.reset();
+    },
+    onError: (error) => {
+      console.error("failed to create post", error.message);
     },
   });
 
   const submitForm = (data) => {
     mutation.mutate(data);
-    methods.reset();
   };
 
   return (
     <FormProvider {...methods}>
-      <StyledForm submitForm={submitForm}></StyledForm>
+      <StyledForm submitForm={submitForm}>
+        {mutation.isLoading && (
+          <p className="text-green-100">...Dodawanie Posta</p>
+        )}
+        {mutation.isError && (
+          <p className="text-red-100">
+            Wystapił błąd:{mutation.error?.message}
+          </p>
+        )}
+      </StyledForm>
     </FormProvider>
   );
 };

@@ -1,28 +1,16 @@
 {
   "posts": [
     {
-      "id": "1",
-      "title": "Post 1",
-      "body": "This is the first post",
-      "user": "guest1"
+      "id": "5adc",
+      "title": "Zdrowo zyc",
+      "body": "Jesc Jezryny czy nie",
+      "user": "Krzysiu "
     },
     {
-      "id": "2",
-      "title": "Post 2",
-      "body": "This is the second post",
-      "user": "guest9"
-    },
-    {
-      "id": "0ce6",
-      "title": "TMósdadddd",
-      "body": "ddddddd",
-      "user": "sss"
-    },
-    {
-      "id": "6a5f",
-      "title": "Moj pies je kupe",
-      "body": "Moj pies zjada kupe i jest zadowlony",
-      "user": "Stacy"
+      "id": "984a",
+      "title": "Pies ?",
+      "body": "pies pies pies",
+      "user": "Burek"
     }
   ]
 }
