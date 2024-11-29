@@ -1,18 +1,21 @@
-import { createRoot } from "react-dom/client";
+import "./App.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Form } from "./Form";
-import { GlobalProvider } from "./GlobalProvider";
+import { Form } from "./components/Form";
+import { GlobalProvider } from "./hooks/GlobalProvider";
+import { PostList } from "./components/PostList";
+import { Layout } from "./components/Layout";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <GlobalProvider>
-      <Form />
+      <Layout>
+        <Form />
+        <PostList />
+      </Layout>
     </GlobalProvider>
   </QueryClientProvider>
 );
 
-const container = document.getElementById("app");
-const root = createRoot(container);
-root.render(<App />);
+export default App;

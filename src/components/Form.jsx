@@ -1,17 +1,23 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
-import { useForm, FormProvider } from 'react-hook-form';
-import { z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useMethodContext, useStateContext } from './useGlobalProvider';
+import { useForm, FormProvider } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useMethodContext, useStateContext } from "../hooks/useGlobalProvider";
 
-import { StyledForm } from './StyledForm';
+import { StyledForm } from "./StyledForm";
 
 const schema = z
   .object({
-    title: z.string().min(5, 'Minimum 5 znaków').max(12, 'Maximum 12 znaków'),
-    body: z.string().min(1, 'Pole nie może być puste').max(120, 'Limit 120 znaków'),
-    user: z.string().min(2, 'Pole nie może być puste').max(15, 'Limit 15 znaków'),
+    title: z.string().min(5, "Minimum 5 znaków").max(12, "Maximum 12 znaków"),
+    body: z
+      .string()
+      .min(1, "Pole nie może być puste")
+      .max(120, "Limit 120 znaków"),
+    user: z
+      .string()
+      .min(2, "Pole nie może być puste")
+      .max(15, "Limit 15 znaków"),
   })
   .required();
 
@@ -28,7 +34,7 @@ export const Form = () => {
   };
 
   useEffect(() => {
-    console.log('Updated postsState:', postsState); // Loguj nowy stan po każdej aktualizacji
+    console.log("Updated postsState:", postsState); // Loguj nowy stan po każdej aktualizacji
   }, [postsState]); // W
 
   return (
