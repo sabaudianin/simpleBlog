@@ -2,18 +2,8 @@ import { useDeletePost } from "../hooks/useDeletePost";
 import { useEditPost } from "../hooks/useEditPost";
 
 export const PostAction = ({ postId }) => {
-  const {
-    mutate: deletePost,
-    isLoading: isDeleting,
-    isError: isDeletingError,
-    error: deleteError,
-  } = useDeletePost();
-  //   const {
-  //     mutate: editPost,
-  //     isLoading: isEditing,
-  //     isError: isEditingError,
-  //     error: editError,
-  //   } = useEditPost();
+  const deletePost = useDeletePost();
+  const editPost = useEditPost();
 
   const handleDelete = () => {
     deletePost(postId);
@@ -27,27 +17,28 @@ export const PostAction = ({ postId }) => {
       <button
         className="bg-red-500 text-white my-1 p-1 rounded"
         onClick={handleDelete}
-        disabled={isDeleting}
+        disabled={deletePost.isLoading}
       >
-        {isDeleting ? "Deleting..." : "Delete"}
+        {deletePost.isLoading ? "Deleting..." : "Delete"}
       </button>
-      {isDeletingError && (
+      {deletePost.isError && (
         <p className="bg-red-500 text-white px-4 py-2 rounded">
-          Error: {deleteError?.message}
+          Error: {deletePost.isError?.message}
         </p>
       )}
-      {/* <button
+
+      <button
         className="bg-blue-500 text-white my-1 p-1 rounded"
         onClick={handleEdit}
-        disabled={isEditing}
+        disabled={editPost.isLoading}
       >
-        {isEditing ? "Editing..." : "Edit"}
+        {editPost.isLoading ? "Editing..." : "Edit"}
       </button>
-      {isEditingError && (
+      {editPost.isError && (
         <p className="bg-red-500 text-white px-4 py-2 rounded">
-          {editError?.message}
+          Error: {editPost.error?.message}
         </p>
-      )} */}
+      )}
     </>
   );
 };

@@ -4,11 +4,16 @@ import { useQueryClient, useMutation } from "@tanstack/react-query";
 export const useDeletePost = () => {
   const queryClient = useQueryClient();
 
-  const { mutate, isLoading, isError, error } = useMutation({
+  const mutation = useMutation({
     mutationFn: deletePost,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["posts"] });
     },
   });
-  return { mutate, isLoading, isError, error };
+  return {
+    action: mutation.mutate,
+    isLoading: mutation.isLoading,
+    isError: mutation.isError,
+    error: mutation.error,
+  };
 };
