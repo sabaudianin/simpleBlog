@@ -1,8 +1,8 @@
 import { updatePost } from "../api/postsMethods";
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useQueryClient, useMutation } from "@tanstack/react-query";
 
 export const useEditPost = () => {
-  const queryClient = useQuery();
+  const queryClient = useQueryClient();
   const mutation = useMutation({
     mutationFn: updatePost,
     onSuccess: () => {
@@ -10,9 +10,9 @@ export const useEditPost = () => {
     },
   });
   return {
-    action: mutation.mutate,
-    isLoading: mutation.isLoading,
-    isError: mutation.isError,
-    error: mutation.error,
+    editPost: mutation.mutate,
+    isSaving: mutation.isLoading,
+    isEditError: mutation.isError,
+    editError: mutation.error,
   };
 };

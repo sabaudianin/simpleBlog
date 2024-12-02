@@ -11,9 +11,9 @@ export const useDeletePost = () => {
     },
   });
   return {
-    action: mutation.mutate,
-    isLoading: mutation.isLoading,
-    isError: mutation.isError,
-    error: mutation.error,
+    deletePost: mutation.mutate,
+    isDelting: mutation.isLoading,
+    isDeleteError: mutation.isError,
+    deleteError: mutation.error,
   };
 };
