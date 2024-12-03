@@ -1,7 +1,7 @@
 import { useFormContext } from "react-hook-form";
 import { InputErrors } from "./InputErrors";
 
-export const StyledForm = ({ submitForm }) => {
+export const FormContent = ({ submitForm }) => {
   const { register, handleSubmit } = useFormContext();
 
   return (

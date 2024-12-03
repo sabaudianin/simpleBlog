@@ -2,7 +2,7 @@ import axios from "axios";
 
 const BASE_URL = "http://localhost:3000/posts";
 
-//axios setings
+//axios settings
 const apiClient = axios.create({
   baseURL: BASE_URL,
   headers: {
@@ -11,10 +11,19 @@ const apiClient = axios.create({
 });
 
 //AXIOS
-export const fetchPost = async () => {
+export const fetchPost = async (page = 1, limit = 10) => {
   try {
-    const response = await apiClient.get("/");
-    return response.data;
+    const response = await axios.get(
+      `http://localhost:3000/posts?_page=${page}&_limit=${limit}&_sort=id&_order=asc`
+    );
+    console.log("Fetched data:", response.data);
+    const items = response.data;
+    // Jeśli liczba elementów jest równa limitowi, to mogą być kolejne strony
+    const hasMore = items.length === limit;
+    return {
+      items,
+      hasMore,
+    };
   } catch (error) {
     console.error("Error fetching", error);
     throw error;

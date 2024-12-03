@@ -4,7 +4,7 @@ import { useForm, FormProvider } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { StyledForm } from "./StyledForm";
+import { FormContent } from "./FormContent";
 
 const schema = z
   .object({
@@ -41,7 +41,7 @@ export const Form = () => {
 
   return (
     <FormProvider {...methods}>
-      <StyledForm submitForm={submitForm}>
+      <FormContent submitForm={submitForm}>
         {mutation.isLoading && (
           <p className="text-green-100">...Dodawanie Posta</p>
         )}
@@ -50,7 +50,7 @@ export const Form = () => {
             Wystapił błąd:{mutation.error?.message}
           </p>
         )}
-      </StyledForm>
+      </FormContent>
     </FormProvider>
   );
 };
